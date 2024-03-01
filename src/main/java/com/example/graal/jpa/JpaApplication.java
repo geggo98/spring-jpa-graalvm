@@ -1,9 +1,8 @@
 package com.example.graal.jpa;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import java.util.Collection;
+import java.util.stream.Stream;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration;
@@ -18,8 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import java.util.Collection;
-import java.util.stream.Stream;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 
 /**
@@ -80,7 +84,10 @@ interface CustomerRepository extends JpaRepository<Customer, Integer> {
 }
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 class Customer {
