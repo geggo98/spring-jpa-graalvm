@@ -1,0 +1,21 @@
+# Results
+
+
+| Memory Limit | Round | Environment          | Avg Latency | Stdev Latency | Max Latency | Latency Distribution 50% | Latency Distribution 75% | Latency Distribution 90% | Latency Distribution 99% | Requests | Requests/sec | Transfer/sec |
+|--------------|-------|----------------------|-------------|---------------|-------------|--------------------------|--------------------------|--------------------------|--------------------------|----------|--------------|--------------|
+| 200MiB       | 1     | GraalVM native-image | 14.33ms     | 15.00ms       | 343.01ms    | 10.15ms                  | 18.02ms                  | 31.77ms                  | 72.13ms                  | 1034843  | 34379.91     | 15.02MB      |
+| 200MiB       | 1     | JVM Hotspot          | 5.09ms      | 4.16ms        | 211.27ms    | 4.12ms                   | 6.59ms                   | 9.58ms                   | 19.98ms                  | 2560089  | 85156.11     | 37.21MB      |
+| 200MiB       | 2     | GraalVM native-image | 14.89ms     | 15.69ms       | 238.48ms    | 10.25ms                  | 19.13ms                  | 33.15ms                  | 75.37ms                  | 1005003  | 33471.85     | 14.63MB      |
+| 200MiB       | 2     | JVM Hotspot          | 4.12ms      | 3.12ms        | 216.65ms    | 3.38ms                   | 5.36ms                   | 7.43ms                   | 15.02ms                  | 3069551  | 102080.12    | 44.61MB      |
+| 400MiB       | 1     | GraalVM native-image | 11.03ms     | 11.38ms       | 247.42ms    | 8.17ms                   | 14.02ms                  | 26.01ms                  | 51.82ms                  | 1330114  | 44314.71     | 19.36MB      |
+| 400MiB       | 1     | JVM Hotspot          | 4.30ms      | 3.46ms        | 224.41ms    | 3.49ms                   | 5.29ms                   | 7.96ms                   | 16.60ms                  | 2984890  | 99318.91     | 43.40MB      |
+| 400MiB       | 2     | GraalVM native-image | 12.72ms     | 14.78ms       | 357.58ms    | 8.81ms                   | 16.23ms                  | 29.50ms                  | 69.77ms                  | 1236639  | 41205.64     | 18.01MB      |
+| 400MiB       | 2     | JVM Hotspot          | 3.44ms      | 2.98ms        | 207.92ms    | 2.84ms                   | 4.17ms                   | 6.36ms                   | 11.69ms                  | 3661758  | 121822.76    | 53.23MB      |
+| 800MiB       | 1     | GraalVM native-image | 9.87ms      | 11.62ms       | 257.35ms    | 5.53ms                   | 12.13ms                  | 23.67ms                  | 55.10ms                  | 1617271  | 53738.37     | 23.48MB      |
+| 800MiB       | 1     | JVM Hotspot          | 4.38ms      | 3.57ms        | 80.09ms     | 3.68ms                   | 5.36ms                   | 8.12ms                   | 17.44ms                  | 2985783  | 99379.86     | 43.43MB      |
+| 800MiB       | 2     | GraalVM native-image | 9.22ms      | 10.77ms       | 212.25ms    | 5.08ms                   | 11.42ms                  | 22.61ms                  | 50.52ms                  | 1776799  | 59051.40     | 25.81MB      |
+| 800MiB       | 2     | JVM Hotspot          | 3.32ms      | 2.22ms        | 40.44ms     | 2.81ms                   | 3.96ms                   | 6.11ms                   | 11.34ms                  | 3799200  | 126421.41    | 55.24MB      |
+| 1600MiB      | 1     | GraalVM native-image | 8.81ms      | 11.41ms       | 289.81ms    | 4.89ms                   | 10.16ms                  | 20.80ms                  | 54.52ms                  | 1938482  | 64458.51     | 28.17MB      |
+| 1600MiB      | 1     | JVM Hotspot          | 4.01ms      | 3.40ms        | 218.30ms    | 3.36ms                   | 4.68ms                   | 7.38ms                   | 15.04ms                  | 3229438  | 107447.77    | 46.95MB      |
+| 1600MiB      | 2     | GraalVM native-image | 8.23ms      | 10.20ms       | 208.72ms    | 4.61ms                   | 9.49ms                   | 19.61ms                  | 49.66ms                  | 2049885  | 68136.87     | 29.77MB      |
+| 1600MiB      | 2     | JVM Hotspot          | 3.25ms      | 2.31ms        | 47.26ms     | 2.75ms                   | 3.75ms                   | 5.80ms                   | 11.90ms                  | 3961713  | 131874.29    | 57.63MB      |
