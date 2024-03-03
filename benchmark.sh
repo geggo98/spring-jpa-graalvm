@@ -73,13 +73,13 @@ function main() {
   echo -n "JVM HotSpot version: "; java -version
   echo -n "GraalVM native-image version: "; native-image --version
   echo "Starting GraalVM native-image process on port 8080"
-  ./build/native/nativeCompile/jpa -Xmx${memory_limit} > /dev/null &
+  command time --format "[GraalVM native-image] max mem: %MkB, wall clock time: %es, user time: %Us, system time: %Ss" ./build/native/nativeCompile/jpa -Xmx${memory_limit} > /dev/null &
   echo -n "Waiting for port 8080 to be ready"
   wait_for_port 8080
   echo " done"
 
   echo "Starting JVM Hotspot VM process on port 8081"
-  java -Xmx${memory_limit} -XX:+UseG1GC  -Dserver.port=8081 -jar ./build/libs/jpa-0.0.1-SNAPSHOT.jar > /dev/null &
+  command time --format "[JVM Hotspot] max mem: %MkB, wall clock time: %es, user time: %Us, system time: %Ss" java -Xmx${memory_limit} -XX:+UseG1GC  -Dserver.port=8081 -jar ./build/libs/jpa-0.0.1-SNAPSHOT.jar > /dev/null &
   echo -n "Waiting for port 8081 to be ready"
   wait_for_port 8081
   echo " done"
@@ -96,12 +96,19 @@ function main() {
   wrk -t12 -c400 -d30s --latency http://localhost:8080/customers | indent 6
   echo "    Benchmark JVM Hotspot"
   wrk -t12 -c400 -d30s --latency http://localhost:8081/customers | indent 6
+  echo "  Cooldown: waiting for 30 seconds"
+  sleep 30
   echo "  Round 2"
   echo "    Benchmark JVM Hotspot"
   wrk -t12 -c400 -d30s --latency http://localhost:8081/customers | indent 6
   echo "    Benchmark GraalVM native-image"
   wrk -t12 -c400 -d30s --latency http://localhost:8080/customers | indent 6
 
+  echo "Shotdown JVM Hotspot and GraalVM native-image processes"
+  kill %1
+  wait %1
+  kill %2
+  wait %2
   echo "Done"
 }
 
