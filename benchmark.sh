@@ -70,25 +70,27 @@ function main() {
   parse_args "$@"
 
   echo "Testing with memory limit: ${memory_limit}"
-  echo -n "JVM HotSpot version: "; java -version
-  echo -n "GraalVM native-image version: "; native-image --version
+  echo -n "JVM HotSpot version: "
+  java -version
+  echo -n "GraalVM native-image version: "
+  native-image --version
   echo "Starting GraalVM native-image process on port 8080"
-  command time --format "[GraalVM native-image] max mem: %MkB, wall clock time: %es, user time: %Us, system time: %Ss" ./build/native/nativeCompile/jpa -Xmx${memory_limit} > /dev/null &
+  command time --format "[GraalVM native-image] max mem: %MkB, wall clock time: %es, user time: %Us, system time: %Ss" ./build/native/nativeCompile/jpa -Xmx${memory_limit} >/dev/null &
   echo -n "Waiting for port 8080 to be ready"
   wait_for_port 8080
   echo " done"
 
   echo "Starting JVM Hotspot VM process on port 8081"
-  command time --format "[JVM Hotspot] max mem: %MkB, wall clock time: %es, user time: %Us, system time: %Ss" java -Xmx${memory_limit} -XX:+UseG1GC  -Dserver.port=8081 -jar ./build/libs/jpa-0.0.1-SNAPSHOT.jar > /dev/null &
+  command time --format "[JVM Hotspot] max mem: %MkB, wall clock time: %es, user time: %Us, system time: %Ss" java -Xmx${memory_limit} -XX:+UseG1GC -Dserver.port=8081 -jar ./build/libs/jpa-0.0.1-SNAPSHOT.jar >/dev/null &
   echo -n "Waiting for port 8081 to be ready"
   wait_for_port 8081
   echo " done"
 
   echo "Warmup"
   echo "  Warmup GraalVM native-image"
-  wrk -t2 -c5 -d5s http://localhost:8080/customers > /dev/null
+  wrk -t2 -c5 -d5s http://localhost:8080/customers >/dev/null
   echo "  Warmup JVM Hotspot"
-  wrk -t2 -c5 -d5s http://localhost:8081/customers > /dev/null
+wrk -t2 -c5 -d5s http://localhost:8081/customers >/dev/null
 
   echo "Benchmarking..."
   echo "  Round 1"
