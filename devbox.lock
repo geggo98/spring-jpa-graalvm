@@ -21,26 +21,6 @@
         }
       }
     },
-    "graalvm-ce@21.0.2": {
-      "last_modified": "2024-02-26T19:46:43Z",
-      "resolved": "github:NixOS/nixpkgs/548a86b335d7ecd8b57ec617781f5e652ab0c38e#graalvm-ce",
-      "source": "devbox-search",
-      "version": "21.0.2",
-      "systems": {
-        "aarch64-darwin": {
-          "store_path": "/nix/store/15k7y6qn89g7p1bcqyr8pfhw5gchccwy-graalvm-ce-21.0.2"
-        },
-        "aarch64-linux": {
-          "store_path": "/nix/store/dy4k103jhdsrnlimw9c066g0i8h7syzv-graalvm-ce-21.0.2"
-        },
-        "x86_64-darwin": {
-          "store_path": "/nix/store/mm8d2il1jj79c22azdnvw81h7r7mxpd3-graalvm-ce-21.0.2"
-        },
-        "x86_64-linux": {
-          "store_path": "/nix/store/knhf2r69w26wf5wrjxzqddc90hjpds8y-graalvm-ce-21.0.2"
-        }
-      }
-    },
     "procps@latest": {
       "last_modified": "2024-02-24T23:06:34Z",
       "resolved": "github:NixOS/nixpkgs/9a9dae8f6319600fa9aebde37f340975cab4b8c0#procps",

@@ -1,10 +1,10 @@
 {
   "packages": [
-    "graalvm-ce@21.0.2",
     "wrk@latest",
     "curl@latest",
     "time@latest",
-    "procps@latest"
+    "procps@latest",
+    "path:./graalvm-closed-source-flake/"
   ],
   "shell": {
     "init_hook": [

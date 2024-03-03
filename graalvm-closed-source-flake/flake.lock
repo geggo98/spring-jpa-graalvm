@@ -1,0 +1,82 @@
+{
+  "nodes": {
+    "graalvmAarch64Darwin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709476805,
+        "narHash": "sha256-gdE2dw8D+YXSrbWiqXfPgwHr+BOXTJsVZBzE4TnJ84Y=",
+        "type": "tarball",
+        "url": "https://download.oracle.com/graalvm/21/archive/graalvm-jdk-21.0.2_macos-aarch64_bin.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://download.oracle.com/graalvm/21/archive/graalvm-jdk-21.0.2_macos-aarch64_bin.tar.gz"
+      }
+    },
+    "graalvmAarch64Linux": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709479007,
+        "narHash": "sha256-wBLJxn0rgWSZlreJTRyt5FNkijD+wHWJTwD3QizX+L8=",
+        "type": "tarball",
+        "url": "https://download.oracle.com/graalvm/21/archive/graalvm-jdk-21.0.2_linux-aarch64_bin.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://download.oracle.com/graalvm/21/archive/graalvm-jdk-21.0.2_linux-aarch64_bin.tar.gz"
+      }
+    },
+    "graalvmX8664Darwin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709478621,
+        "narHash": "sha256-jEEr/6tp0OFyOKZCo1uhX3zNXvXQzY23rLDVFbJjVV0=",
+        "type": "tarball",
+        "url": "https://download.oracle.com/graalvm/21/archive/graalvm-jdk-21.0.2_macos-x64_bin.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://download.oracle.com/graalvm/21/archive/graalvm-jdk-21.0.2_macos-x64_bin.tar.gz"
+      }
+    },
+    "graalvmX8664Linux": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709479102,
+        "narHash": "sha256-1nI5AjycVrnsuHjNIfsQismAZXnBcKNyjvEfhDuNHP8=",
+        "type": "tarball",
+        "url": "https://download.oracle.com/graalvm/21/archive/graalvm-jdk-21.0.2_linux-x64_bin.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://download.oracle.com/graalvm/21/archive/graalvm-jdk-21.0.2_linux-x64_bin.tar.gz"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1709462693,
+        "narHash": "sha256-1xnj8dCZ1/3C88kxrL0+ZjHHIaxB1BKv1iHHD6lz5xw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1462306177b490885d310d2c8e7828dcefacfeb8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "graalvmAarch64Darwin": "graalvmAarch64Darwin",
+        "graalvmAarch64Linux": "graalvmAarch64Linux",
+        "graalvmX8664Darwin": "graalvmX8664Darwin",
+        "graalvmX8664Linux": "graalvmX8664Linux",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
