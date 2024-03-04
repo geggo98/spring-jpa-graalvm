@@ -10,3 +10,10 @@ spring:
   threads:
     virtual:
       enabled: true
+
+# Enable all actuator endpoints
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true

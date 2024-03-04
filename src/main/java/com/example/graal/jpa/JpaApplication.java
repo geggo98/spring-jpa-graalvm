@@ -8,10 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.persistence.Entity;
@@ -44,8 +46,10 @@ import lombok.ToString;
 )
 public class JpaApplication {
 
+    public static ConfigurableApplicationContext applicationContext;
+
     public static void main(String[] args) {
-        SpringApplication.run(JpaApplication.class, args);
+        applicationContext = SpringApplication.run(JpaApplication.class, args);
     }
 
 }
@@ -61,6 +65,11 @@ class CustomerRestController {
     Collection<Customer> customers() {
         return this.customerRepository.findAll();
     }
+
+    @PostMapping("/shutdown")
+    void shutdown() {
+        JpaApplication.applicationContext.close();
+    }
 }
 
 @Component
@@ -73,8 +82,7 @@ class Initializer implements ApplicationListener<ApplicationReadyEvent> {
     public void onApplicationEvent(@NonNull ApplicationReadyEvent applicationReadyEvent) {
         Stream.of("Marie Curie", "Albert Einstein", "Rosalind Franklin", "Neil deGrasse Tyson", "Jane Goodall", "Stephen Hawking", "Katherine Johnson", "Chien-Shiung Wu", "Carl Sagan", "Tu Youyou")
                 .map(name -> new Customer(null, name))
-                .map(this.customerRepository::save)
-                .forEach(System.out::println);
+            .forEach(this.customerRepository::save);
     }
 }
 
