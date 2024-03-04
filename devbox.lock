@@ -41,23 +41,37 @@
         }
       }
     },
-    "netcat-gnu@latest": {
-      "last_modified": "2024-02-26T19:46:43Z",
-      "resolved": "github:NixOS/nixpkgs/548a86b335d7ecd8b57ec617781f5e652ab0c38e#netcat-gnu",
+    "procps@latest": {
+      "last_modified": "2024-02-24T23:06:34Z",
+      "resolved": "github:NixOS/nixpkgs/9a9dae8f6319600fa9aebde37f340975cab4b8c0#procps",
       "source": "devbox-search",
-      "version": "0.7.1",
+      "version": "3.3.17",
       "systems": {
-        "aarch64-darwin": {
-          "store_path": "/nix/store/1pc8vdzkh8xnbfrsnmk15qh18kpi95ra-netcat-gnu-0.7.1"
-        },
         "aarch64-linux": {
-          "store_path": "/nix/store/bxkjrbjj636k5qmb9nyjgh2ajk4sw9dz-netcat-gnu-0.7.1"
-        },
-        "x86_64-darwin": {
-          "store_path": "/nix/store/a98bf1qnrwdg39fi99s1rx39w1j58yk4-netcat-gnu-0.7.1"
+          "store_path": "/nix/store/h17g2hz0ganj5ivmx63ysbj5n3pbyvyh-procps-3.3.17"
         },
         "x86_64-linux": {
-          "store_path": "/nix/store/l80xrq2bnnwr531sbzqizsisfz14vlv1-netcat-gnu-0.7.1"
+          "store_path": "/nix/store/ad55a6gxl237k7id50cck37zm8r00sns-procps-3.3.17"
+        }
+      }
+    },
+    "time@latest": {
+      "last_modified": "2024-02-24T23:06:34Z",
+      "resolved": "github:NixOS/nixpkgs/9a9dae8f6319600fa9aebde37f340975cab4b8c0#time",
+      "source": "devbox-search",
+      "version": "1.9",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/95a1dfvpbr3qwwgxhbf3vwg4h6skkdkc-time-1.9"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/nv4i4iq7rl9b1zngys05ibq5n52q0m67-time-1.9"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/pj0m1wpg89s1kh38pipjxd8wcpbyixbs-time-1.9"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/s2412c0yy3j9jqrr8b94ywwbzg3b6961-time-1.9"
         }
       }
     },

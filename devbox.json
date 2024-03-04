@@ -1,9 +1,10 @@
 {
   "packages": [
     "graalvm-ce@21.0.2",
-    "netcat-gnu@latest",
     "wrk@latest",
-    "curl@latest"
+    "curl@latest",
+    "time@latest",
+    "procps@latest"
   ],
   "shell": {
     "init_hook": [

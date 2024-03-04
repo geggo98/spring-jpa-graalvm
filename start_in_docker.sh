@@ -2,7 +2,7 @@
 #
 # Start the application inside a Docker container.
 
-set -euo pipefail
+set -Eeuo pipefail
 IFS=$'\n\t'
 
 declare platform
@@ -43,7 +43,7 @@ function main() {
   parse_args "$@"
 
   local common_args
-  common_args="--rm -ti -v \"$(pwd):/code\" --workdir /code jetpackio/devbox:latest devbox shell"
+common_args="--rm -ti --init -v \"$(pwd):/code\" --workdir /code jetpackio/devbox:latest devbox shell"
 
   if [[ -z "${platform}" ]]; then
     eval "docker run ${common_args}"
