@@ -13,6 +13,9 @@ declare -a jvm_args
 declare -a native_image_args
 declare -a hotspot_args
 
+declare recording_file_basename
+recording_file_basename="recording-$(date +%Y%m%d%H%M%S)"
+
 
 declare timing_file_graal
 timing_file_graal=$(mktemp)
@@ -26,9 +29,9 @@ function shutdown() {
   # Check for "pgrep java" or "pgrep jpa"
   if pgrep "java" >/dev/null || pgrep "jpa" > /dev/null; then
     echo "Shutdown..."
-    curl -s -XPOST "http://localhost:8080/shutdown" > /dev/null
+    curl -s -XPOST "http://localhost:8080/actuator/shutdown" > /dev/null
     sleep 5
-    curl -s -XPOST "http://localhost:8081/shutdown" > /dev/null
+    curl -s -XPOST "http://localhost:8081/actuator/shutdown" > /dev/null
     sleep 5
   fi
   if [[ -s "${timing_file_graal}" || -s "${timing_file_hotspot}" ]]; then
@@ -90,6 +93,7 @@ function usage() {
   echo "  --gc [ZGC|G1]                   Garbage collector to use."
   echo "                                     Default is G1GC."
   echo "                                     Applies only to HotSpot JVM."
+  echo "  --jfr                           Record JFR data for both JVM and native-image processes."
   echo "  --help                          Display this help message"
   exit 1
 }
@@ -117,12 +121,18 @@ function parse_args() {
         ;;
       G1)
         hotspot_args+=("-XX:+UseG1GC")
+        native_image_args+=("--gc=G1")
         ;;
       *)
         echo "Unknown garbage collector: $1"
         usage
         ;;
       esac
+      shift
+      ;;
+    --jfr)
+      native_image_args+=("-XX:StartFlightRecording=filename=${recording_file_basename}-native.jfr,limit=0")
+      hotspot_args+=("-XX:StartFlightRecording=filename=${recording_file_basename}-hotspot.jfr,limit=0")
       shift
       ;;
     --help)

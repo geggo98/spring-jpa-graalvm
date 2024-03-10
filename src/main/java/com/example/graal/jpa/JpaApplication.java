@@ -13,7 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.persistence.Entity;
@@ -31,7 +30,7 @@ import lombok.ToString;
  * This is a simple Spring Boot application that uses Spring Data JPA to store and retrieve data from an in-memory H2 database.
  * <p>
  *     The application is a RESTful service that exposes a single endpoint to retrieve a list of customers.
- *     The application uses Spring Data JPA to store and retrieve data from an in-memory H2 database.
+ *     The application uses Spring Data JPA to store and retrieve data from an in-memory H2 database or an SQLite database.
  *     During startup, the application populates the database with a few records.
  * </p><p>
  *     This application runs on the  Java Hotspot VM and GraalVM.
@@ -64,11 +63,6 @@ class CustomerRestController {
     @GetMapping("/customers")
     Collection<Customer> customers() {
         return this.customerRepository.findAll();
-    }
-
-    @PostMapping("/shutdown")
-    void shutdown() {
-        JpaApplication.applicationContext.close();
     }
 }
 

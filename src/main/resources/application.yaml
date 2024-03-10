@@ -14,6 +14,10 @@ spring:
 # Enable all actuator endpoints
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
   endpoint:
     shutdown:
       enabled: true
