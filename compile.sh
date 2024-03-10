@@ -6,7 +6,7 @@ set -Eeuo pipefail
 IFS=$'\n\t'
 
 function main() {
-  ./gradlew --no-daemon clean bootJar nativeCompile
+./gradlew --no-daemon clean bootJar nativeCompile test nativeTest
 }
 
 main "$@"

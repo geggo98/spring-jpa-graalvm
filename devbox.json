@@ -8,7 +8,8 @@
   ],
   "shell": {
     "init_hook": [
-      "echo 'Welcome to devbox!' > /dev/null"
+      "export JAVA_HOME=$(dirname $(dirname $(which java)))",
+      "export GRAALVM_HOME=$(dirname $(dirname $(which native_image)))"
     ],
     "scripts": {
       "test": [

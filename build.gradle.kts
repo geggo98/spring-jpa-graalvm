@@ -9,32 +9,65 @@ plugins {
 group = "com.example.graal"
 version = "0.0.1-SNAPSHOT"
 
-java {
-	sourceCompatibility = JavaVersion.VERSION_21
-}
-
 configurations {
 	compileOnly {
+		// Enable annotation processor compiler plugins (like Lombok)
 		extendsFrom(configurations.annotationProcessor.get())
 	}
 }
 
 repositories {
+	// Download dependencies from Maven Central
 	mavenCentral()
 }
 
 dependencies {
+	// Spring modules
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	// Micrometer metrics: Prometheus, OpenTelemetry (Jaeger), and OpenZipkin Brave (Amazon X-Ray)
+	implementation("io.micrometer:micrometer-tracing-bridge-otel")
 	implementation("io.micrometer:micrometer-tracing-bridge-brave")
+	implementation("io.micrometer:micrometer-registry-prometheus")
+
+	// Compiler plugins and annotation processors
 	compileOnly("org.projectlombok:lombok")
-	runtimeOnly("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")
+
+	// Database drivers.
+	// They are needed at runtime, but not available at compile time,
+	// so that no code accidentally depends directly on the driver.
+	runtimeOnly("com.h2database:h2")
+	runtimeOnly("org.xerial:sqlite-jdbc")
+
+	// Test dependencies
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
+java {
+	// Set the source and target compatibility to Java 21
+	sourceCompatibility = JavaVersion.VERSION_21
+	// Request GraalVM as the target platform for creating the native image
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+		vendor = JvmVendorSpec.GRAAL_VM
+	}
+}
+
+graalvmNative {
+	binaries {
+		named("main") {
+			// Enable Java Flight Recorder (JFR) built-in profiler for the native image
+			buildArgs(listOf("-H:+AllowVMInspection"))
+		}
+	}
+}
+
 tasks.withType<Test> {
+	// Use JUnit 5 as the test runner.
+	// This is the default in Spring Boot 3.2.
+	// And it's also supported by GraalVM to run native tests.
 	useJUnitPlatform()
 }
 
