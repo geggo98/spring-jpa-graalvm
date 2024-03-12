@@ -9,11 +9,11 @@
   "shell": {
     "init_hook": [
       "export JAVA_HOME=$(dirname $(dirname $(which java)))",
-      "export GRAALVM_HOME=$(dirname $(dirname $(which native_image)))"
+      "export GRAALVM_HOME=$(dirname $(dirname $(which native-image)))"
     ],
     "scripts": {
       "test": [
-        "echo \"Error: no test specified\" && exit 1"
+        "./gradlew clean test nativeTest"
       ]
     }
   }
