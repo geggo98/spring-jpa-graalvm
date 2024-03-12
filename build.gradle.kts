@@ -26,9 +26,12 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	// Micrometer metrics: Prometheus, OpenTelemetry (Jaeger), and OpenZipkin Brave (Amazon X-Ray)
-	implementation("io.micrometer:micrometer-tracing-bridge-otel")
+	// Micrometer metrics: Prometheus, OpenTelemetry (Jaeger), and OpenZipkin Brave (Amazon X-Ray),
+	// Note: The OpenTelemetry and OpenZipkin Brave bridges are optional.
+	//       You can choose one of them based on your tracing system or disable both..
+	//       You cannot use both at the same time.
 	implementation("io.micrometer:micrometer-tracing-bridge-brave")
+//	implementation("io.micrometer:micrometer-tracing-bridge-otel")
 	implementation("io.micrometer:micrometer-registry-prometheus")
 
 	// Compiler plugins and annotation processors
