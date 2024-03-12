@@ -62,7 +62,9 @@ graalvmNative {
 	binaries {
 		named("main") {
 			// Enable Java Flight Recorder (JFR) built-in profiler for the native image
-			buildArgs(listOf("-H:+AllowVMInspection"))
+			// - "AllowVMInspection" is required to enable JFR on older GraalVM versions.
+			// - "enable-monitoring" is required to enable JFR on GraalVM 21.3.0 and later.
+			buildArgs(listOf("-H:+AllowVMInspection", "--enable-monitoring"))
 		}
 	}
 }
